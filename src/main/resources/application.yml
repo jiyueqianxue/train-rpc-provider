@@ -1,0 +1,22 @@
+spring:
+  profiles:
+    active: dev
+server:
+  port: 8080
+
+multipart.maxFileSize: 512MB
+multipart.maxRequestSize: 512MB
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  refresh:
+    enabled: false
+
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 600000
+
+ribbon:
+  ConnectTimeout: 30000
+  ReadTimeout: 600000

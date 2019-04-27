@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: train-test
+  cloud:
+    config:
+      uri: http://msc.traininfo.com:80
+      label: ${DEPLOY_ENV}
+  velocity: 
+    suffix: .vm
+multipart:
+  maxFileSize: 50Mb
+  maxRequestSize: 50Mb
+mybatis:
+#  mapperLocations: classpath:dal/sqlmap/*.xml
+#  typeAliasesPackage: io.xdy4.bill.auth.model.dto
+#  config: classpath:dal/sqlmap-config.xml

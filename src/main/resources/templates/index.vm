@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MINE管理系统</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/assets/css/dpl-min.css" rel="stylesheet">
+<link href="/assets/css/bui-min.css" rel="stylesheet">
+<link href="/custom/css/custom-min.css" rel="stylesheet">
+<link href="/custom/css/blue/custom-blue-min.css" rel="stylesheet">
+<link id="customCls" href="" rel="stylesheet">
+<style>
+
+
+.top-list-down-small {
+	position: absolute;
+	width: 120px;
+	top: 50px;
+	z-index: 10;
+	max-height: 300px;
+	overflow: auto;
+	border: 1px solid #ddd;
+	background-color: #eee;
+}
+
+.top-list-down .list-downitem {
+	height: 30px;
+	line-height: 30px;
+	padding: 0 10px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.top-list-down-small .list-downitem {
+	height: 30px;
+	line-height: 30px;
+	padding: 0 10px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.top-list-down a {
+	color: #2f79c0 !important;
+}
+
+.top-list-down-small a {
+	color: #2f79c0 !important;
+}
+
+.top-list-down {
+	width: 500px;
+	position: fixed;
+	top: 50px;
+	z-index: 1002;
+	right: 0;
+	overflow: hidden;
+	border: 1px solid #ddd;
+	padding: 10px;
+	background-color: #eee;
+}
+
+.top-list-down .top-list-down-small .top-nav-tab {
+	line-height: 40px;
+}
+
+.top-list-container {
+	background: #fff;
+	padding: 0 15px;
+}
+
+.top-tab-list {
+	/* padding:15px 0;  */
+	
+}
+
+.top-tab-list li.bui-list-item {
+	border-bottom: 1px solid #eee;
+	line-height: 16px;
+	padding: 6px 0;
+}
+
+.top-tab-list li.bui-list-item>a {
+	color: #333;
+}
+
+.top-list-down .top-list-down-small .top-reset-btn {
+	color: #333 !important;
+	border: 1px solid #eee;
+	padding: 6px 12px;
+	margin-top: 8px;
+	line-height: 16px !important;
+}
+
+.top-list-pagebar .bui-bar {
+	height: auto;
+	line-height: 30px !important;
+}
+
+.top-message-text {
+	width: 350px;
+	overflow: hidden;
+	white-space: nowrap;
+	display: inline-block;
+	text-overflow: ellipsis;
+}
+
+.top-message-time {
+	width: 100px;
+	float: right;
+}
+</style>
+
+<!-- 主页所需css，单独使用 -->
+<link href="/custom/css/main.css" rel="stylesheet">
+
+<!-- for 快速切换风格-->
+<style>
+	.layout-top .layout-logo{
+		background-color: #2a2c3b;
+	}
+	
+	.dropdown-menu{
+		background-color: #42485b;
+	}
+	
+	.dropdown-menu > li > a{
+		padding: 11px 14px;
+		border-top: 0px;
+	}
+	
+	.dropdown-menu > li > a:hover{
+		background-color: #2a2c3b;
+	}
+	
+	.dropdown-menu > .dropdown-submenu > .dropdown-menu{
+		background-color: #2a2c3b;
+	}
+	
+	.dropdown-menu > .dropdown-submenu > .dropdown-menu > li > a{
+		background-color: #2a2c3b;
+	}
+	
+	.dropdown-menu > .dropdown-submenu > .dropdown-menu > li > a:hover{
+		background-color: #42485b;
+	}
+	
+	.dropdown-menu > .dropdown-submenu > .dropdown-menu  > .dropdown-submenu > .dropdown-menu{
+		background-color: #42485b;
+	}
+	
+	.dropdown-menu > .dropdown-submenu > .dropdown-menu  > .dropdown-submenu > .dropdown-menu  > li > a{
+		background-color: #42485b;
+	}
+	
+	.dropdown-menu > .dropdown-submenu > .dropdown-menu  > .dropdown-submenu > .dropdown-menu  > li > a:hover{
+		background-color: #2a2c3b;
+	}
+	
+	.dropdown-submenu  > .dropdown-menu > li > a{
+		border-top: 0px;
+		background-color: #2a2c3b;
+	}
+	
+	.drop-nav{
+		top: 60px;
+	}
+	
+	.layout-page-title{
+		padding: 0;
+	}
+	
+	.layout-content{.dropdown-menu > li > a
+		margin-left: 180px;
+	}
+	
+	.dropdown-menu li  a .icon{
+		margin-top: -3px;
+		margin-right: 0px;
+		width: 20px;
+	}
+	
+	.dropdown-menu li  a .icon.icon-mana, .dropdown-submenu:hover > a > .icon.icon-mana, .dropdown-submenu:focus > a > .icon .icon-mana,
+	.dropdown-menu li  a .icon.icon-claim, .dropdown-submenu:hover > a > .icon.icon-claim, .dropdown-submenu:focus > a > .icon.icon-claim,
+	.dropdown-menu li  a .icon.icon-print, .dropdown-submenu:hover > a > .icon.icon-print, .dropdown-submenu:focus > a > .icon.icon-print,
+	.dropdown-menu li  a .icon.icon-charge, .dropdown-submenu:hover > a > .icon.icon-charge, .dropdown-submenu:focus > a > .icon.icon-charge,
+	.dropdown-menu li  a .icon.icon-final, .dropdown-submenu:hover > a > .icon.icon-final, .dropdown-submenu:focus > a > .icon.icon-final,
+	.dropdown-menu li  a .icon.icon-receipt, .dropdown-submenu:hover > a > .icon.icon-receipt, .dropdown-submenu:focus > a > .icon.icon-receipt,
+	.dropdown-menu li  a .icon.icon-table, .dropdown-submenu:hover > a > .icon.icon-table, .dropdown-submenu:focus > a > .icon.icon-table,
+	.dropdown-menu li  a .icon.icon-person, .dropdown-submenu:hover > a > .icon.icon-person, .dropdown-submenu:focus > a > .icon.icon-person,
+	.dropdown-menu li  a .icon.icon-feed, .dropdown-submenu:hover > a > .icon.icon-feed, .dropdown-submenu:focus > a > .icon.icon-feed,
+	.dropdown-menu li  a .icon.icon-money, .dropdown-submenu:hover > a > .icon.icon-money, .dropdown-submenu:focus > a > .icon.icon-money,
+	.dropdown-menu li  a .icon.icon-storage, .dropdown-submenu:hover > a > .icon.icon-storage, .dropdown-submenu:focus > a > .icon.icon-storage,
+	.dropdown-menu li  a .icon.icon-security, .dropdown-submenu:hover > a > .icon.icon-security, .dropdown-submenu:focus > a > .icon.icon-security,
+	.dropdown-menu li  a .icon.icon-setting, .dropdown-submenu:hover > a > .icon.icon-setting, .dropdown-submenu:focus > a > .icon.icon-setting{
+		background-position: 0 0;
+	}
+	
+	.layout-logo-img{
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 180px;
+		height: 60px;
+		background: url('/../../custom/img/blue/logo.png') no-repeat;
+		background-size: 100% 100%;
+	}
+	
+	.layout-logo-title{
+		position: absolute;
+		top: 0px;
+		left: 200px;
+		height: 60px;
+		line-height: 60px;
+		color: #fff;
+		font-size: 14px;
+		font-weight: bold;
+	}
+	
+	.layout-logo-title-img{
+		position: absolute;
+		top: 25px;
+		left: 105px;
+		width: 20px;
+		height: 25px;
+		filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+        -moz-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+		background: url('/../../custom/img/blue/icon1.png') no-repeat;
+		background-size: 100% 100%;
+	}
+	
+	.layout-top .nav>li{
+		min-width: 60px;
+		margin: 0 0;
+		padding: 0 10px;
+		line-height: 60px;
+		border-right: 1px #000 solid;
+		text-align: center;
+		color: #fff;
+	}
+	
+	.layout-top .nav>li:hover{
+		background-color: #42485b;
+	}
+	
+	.layout-top .nav>li .icon{
+		
+		width: 25px;
+		height: 25px;
+		margin-top: -1px;
+		background: url('/../../custom/img/blue/icon6.png') no-repeat;
+	}
+	
+	.layout-top .nav>li .icon-search{
+		background: url('/../../custom/img/blue/icon_search.png') no-repeat;
+	}
+	
+	.layout-top .nav>li .icon-head{
+		background: url('/../../custom/img/blue/icon_head.png') no-repeat;
+	}
+	.layout-top .nav>li .icon-info{
+		background: url('/../../custom/img/blue/icon_info.png') no-repeat;
+	}
+	.layout-top .nav>li .icon-key{
+		background: url('/../../custom/img/blue/icon_key.png') no-repeat;
+	}
+	.layout-top .nav>li .icon-set{
+		background: url('/../../custom/img/blue/icon_set.png') no-repeat;
+	}
+	
+	.layout-top .nav>li .icon-people{
+		margin-top: -6px;
+		margin-right: 8px;
+		background: url('/../../custom/img/blue/icon_user.png') no-repeat;
+		background-size: 100% 100%;
+	}
+	
+	.layout-nav-userinfo{
+		position: absolute;
+		z-index: 2;
+		top: 60px;
+		right: 80px;
+		width: 150px;
+		height: 180px;
+		color: #384669;
+		background-color: #fff;
+		border: 1px #f4f5f9 solid;
+		box-shadow:0 0 3px #000;
+		border-radius: 3px;
+	}
+	
+	.layout-nav-userinfo-items{
+		height: 75px;
+		display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    	display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+    	display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+    	display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+   		display: flex;
+   		
+   		justify-content: center;
+        -webkit-box-pack: center;
+	}
+	
+	.layout-nav-userinfo-items > div{
+		border: 1px #red solid;
+		width: 70px;
+		height: 70px;
+		cursor: pointer;
+		
+		display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    	display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+    	display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+    	display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+   		display: flex;
+   		
+   		flex-direction: column;
+   		-webkit-flex-direction:column;
+   		
+   		justify-content: center;
+        -webkit-box-pack: center;
+        
+        align-items: center;
+        -webkit-align-items:center;
+	}
+	
+	.layout-nav-userinfo-items > div > p{
+		margin: 0 0;
+	}
+	
+	.layout-nav-userinfo-items > div:hover{
+		background-color: #f4f5f9;
+	}
+	
+	.layout-nav-userinfo-logout{
+		background-color: #f4f5f9;
+		line-height: 30px;
+		cursor: pointer;
+	}
+	
+	.bui-nav-list-circle{
+		position: absolute;
+		width: 8px;
+		height: 8px;
+		top: 17px;
+		left: 5px;
+		border-radius: 10px;
+		border: 1px #fff solid;
+	}
+	
+	.dropdown>ul.bui-nav-list>li>ul>li>a{
+		padding-left: 25px;
+	}
+	
+	.nav-border{
+		height: 50px;
+		background-image: none;
+	}
+	
+	.nav-tab{
+		height: 50px;
+	}
+	
+	.nav-flow{
+		height: 50px;
+		line-height: 50px;
+	}
+	
+	.demo-work{
+		height: 50px;
+		line-height: 50px;
+	}
+</style>
+<script type="text/javascript">
+	var listData = ${menuList}
+	window.userName="${userName}";
+</script>
+</head>
+<body>
+	<div id="mainlayout">
+		<!-- 面板顶部区域 -->
+		<div class="layout-top">
+			<div class="layout-logo"></div>
+			
+			<!-- 新增标题logo区域  -->
+			<div class="layout-logo-img"></div>
+			<div class="layout-logo-title">金融云管理后台 
+				<!-- <div class="layout-logo-title-img"></div>  -->
+			</div>
+			<!-- 新增标题logo区域  -->
+			
+			<!-- 修改主题菜单区域  -->
+			<!--div class="layout-nav-bar">
+				<ul class="nav">
+					<li id="user"><a href="javascript:void(0);"><span class="icon icon-people"></span>欢迎：${userName}</a></li>
+					<li id="roles"><a href="javascript:void(0);">角色：${roles}</a></li>
+					<li><a href="/log_out"><span class="icon icon-out"></span>退出</a></li>
+				</ul>
+		    </div-->
+		    
+		    <div class="layout-nav-bar">
+		    	<ul class="nav">
+					<!--
+					<li id="search"><span class="icon icon-search"></span>搜索</li>
+					<li id="msg">消息</li>
+					<li id="service">客服</li>
+					-->
+					<li id="user"><span class="icon icon-people"></span>${userName}
+						<div class="layout-nav-userinfo" style="display: none;">
+							<div class="layout-nav-userinfo-items">
+					        	<div><span class="icon icon-head"></span><p>头像设置</p></div>
+								<div><span class="icon icon-info"></span><p>基本资料</p></div>
+							</div>
+							<div class="layout-nav-userinfo-items">
+								<div id="modPasswordDiv" ><span class="icon icon-key"></span><p>修改密码</p></div>
+								<div><span class="icon icon-set"></span><p>常用设置</p></div>
+							</div>
+							<div class="layout-nav-userinfo-logout"><button id="log_out" >退出管理平台</button></div>
+		    			</div>
+					</li>
+					<li id="language">简体中文</li>
+				</ul>
+				
+		    </div>
+		    <!-- 修改主题菜单区域  -->
+		    
+			<div class="layout-page-title">
+				<!-- 标签显示内容 -->
+				<div class="nav-tab ">
+					<div id="flowNav" class="nav-flow ">
+						<span class="icon-home"></span> 
+						<span id="flow"> 工作台首页 </span>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- 弹出菜单导航 需class=dropdown-list支持 -->
+		<div id="navlist" class="drop-nav clearfix" 
+			data-icon="true">
+			<!-- style="height: 2000px;" -->
+			<!--div id="menuBtn" class="nav-menu">
+				<span class="icon-menu"> </span>
+				<h3>功能模块</h3>
+				<span class="icon-arrow-down"> </span>
+			</div-->
+		</div>
+		<!-- 面板内容区域 -->
+		<div class="layout-content">
+			<!-- iframe加载局部页面模式 使用class=layout-iframe渲染 -->
+			<div id="frameTab" class="layout-center layout-iframe"></div>
+		</div>
+
+	</div>
+
+	#include('baseJsInclude.vm')
+	<script type="text/javascript" src="/web/js/index.js"></script>
+	<script type="text/javascript">
+		$(window).load(function() { 
+			$(".dropdown>ul.bui-nav-list>li>ul>li").each(function(index,dom){
+					
+				var $node=$(">a:first",$(dom)),
+					iconHtml='<div class="bui-nav-list-circle" ';
+					
+				var className = $node.parent()[0].className;
+					
+				if(className === ''){
+					var nodeValue = $node.parent()[0].attributes[0].nodeValue
+						
+					var nodeIndex = parseInt(nodeValue.substring(5))
+						
+					var top = (nodeIndex - 1) * 45 + 17;
+						
+					iconHtml=iconHtml+'style="top:'+ top +'px"></div>';
+				}else{
+					iconHtml=iconHtml+'></div>';
+				}
+					
+				contentHtml=$node.html();
+				contentHtml=iconHtml+contentHtml;
+				$node.html(contentHtml);
+			});
+			
+			resizeNav();
+		});
+		
+		$(window).resize(function() {
+			setTimeout(function () {
+  				resizeNav()
+			},100);
+		});
+		
+		function resizeNav(){
+			var navHeight = $(document.body).height() - 60
+  			$(".dropdown>.dropdown-menu")[0].style.height = navHeight + "px";
+		}
+	</script>
+</body>
+</html>
+
+

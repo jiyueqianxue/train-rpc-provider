@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<link href="/assets/css/bui-min.css" rel="stylesheet">
+	<script src="/assets/jquery-1.8.1.min.js"></script>
+    <title>$error</title>
+	<script type="text/javascript">
+	    function hideMessage(){
+           $("p").hide();
+        }
+		$(function(){
+            $("img").click(function(){
+                $("p").toggle();
+            });
+        });
+    </script>
+
+  </head>
+  <body onLoad="hideMessage()">
+	<div class="centered">
+		<h1>错误状态码:$status</h1>
+		<img src="/custom/img/crying.png">
+    </div>
+  </body>
+</html>
