@@ -1,6 +1,6 @@
 FROM 10.253.105.75:5050/env/jdk7
      
-MAINTAINER zhangjinbao <zhangjinbao@zhongan.com>
+MAINTAINER
 
 COPY ./target/train-ssm.jar /root/
 
