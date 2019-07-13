@@ -1,4 +1,4 @@
-FROM 10.253.105.75:5050/env/jdk7
+FROM 127.0.0.1:5050/env/jdk7
      
 MAINTAINER
 
