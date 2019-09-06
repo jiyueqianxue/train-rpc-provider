@@ -18,6 +18,7 @@ public class Consumer {
         String interfaceName = SayHelloService.class.getName();
         try {
             Method method = SayHelloService.class.getMethod("sayHello", java.lang.String.class);
+            //入参
             Object[] arguments = { "hello" };
 
             Socket socket = new Socket("127.0.0.1", 1234);
@@ -30,7 +31,7 @@ public class Consumer {
             // 从远端读取执行结果
             ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
             Object result = input.readObject();
-
+            System.out.println("rpc result :" + result);
         } catch (NoSuchMethodException | SecurityException | IOException | ClassNotFoundException e) {
 
         }
